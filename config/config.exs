@@ -24,6 +24,9 @@ config :elixir_drip_web, ElixirDripWeb.Endpoint,
 config :elixir_drip,
   ecto_repos: [ElixirDrip.Repo]
 
+config :elixir_drip,
+  storage_provider: ElixirDrip.Storage.Providers.GoogleCloudStorageLocal
+
 # Sample configuration:
 #
 #     config :logger, :console,
