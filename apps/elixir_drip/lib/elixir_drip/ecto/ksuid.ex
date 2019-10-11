@@ -1,10 +1,10 @@
-defmodule ElixirDrips.Ecto.Ksuid do
+defmodule ElixirDrip.Ecto.Ksuid do
   @moduledoc """
   A module implementing ksuid as an ecto type.
   To enable ksuid as the primary key type for ecto schemas add this annotation
   on top of the schema definition:
 
-      @primary_key {:id, Motus.Ecto.Ksuid, autogenerate: true}
+      @primary_key {:id, ...Ecto.Ksuid, autogenerate: true}
       schema "my_schema" do
         (...)
       end
@@ -13,7 +13,7 @@ defmodule ElixirDrips.Ecto.Ksuid do
 
       schema "my_schema" do
         (...)
-        field :my_ksuid_field, Motus.Ecto.Ksuid
+        field :my_ksuid_field, ...Ecto.Ksuid
         (...)
       end
 
@@ -21,20 +21,18 @@ defmodule ElixirDrips.Ecto.Ksuid do
   The elixir library used can be found [here](https://github.com/girishramnani/elixir-ksuid).
   """
 
-  @behaviour Ecto.Type
-
   def type, do: :string
 
   def cast(ksuid) when is_binary(ksuid), do: {:ok, ksuid}
   def cast(_), do: :error
 
+  @doc """
+  Same as `cast/1` but raises `Ecto.CastError` on invalid arguments.
+  """
   def cast!(value) do
     case cast(value) do
-      {:ok, ksuid} ->
-        ksuid
-
-      :error ->
-        raise Ecto.CastError, type: __MODULE__, value: value
+      {:ok, ksuid} -> ksuid
+      :error -> raise Ecto.CastError, type: __MODULE__, value: value
     end
   end
 
@@ -43,5 +41,8 @@ defmodule ElixirDrips.Ecto.Ksuid do
   def dump(binary) when is_binary(binary), do: {:ok, binary}
   def dump(_), do: :error
 
+  # Callback invoked by autogenerate fields - this is all that really matters
+  # just passing around the binary otherwise.
+  @doc false
   def autogenerate, do: Ksuid.generate()
 end

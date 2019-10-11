@@ -14,4 +14,4 @@ config :elixir_drip_web, ElixirDripWeb.Endpoint,
   cache_static_manifest: "priv/static/cache_manifest.json"
 
 config :elixir_drip,
-  storage_provider: ElixirDrip.Storage.Providers.GoogleCloudStorageLive
+  storage_provider: ElixirDrip.Storage.Providers.GoogleCloudStorage.Live

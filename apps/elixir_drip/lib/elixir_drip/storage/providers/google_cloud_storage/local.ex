@@ -1,4 +1,4 @@
-defmodule ElixirDrip.Storage.Providers.GoogleCloudStorageLocal do
+defmodule ElixirDrip.Storage.Providers.GoogleCloudStorage.Local do
   @moduledoc false
   @behaviour ElixirDrip.Behaviours.StorageProvider
 
