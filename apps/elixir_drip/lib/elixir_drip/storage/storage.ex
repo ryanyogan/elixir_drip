@@ -1,11 +1,5 @@
 defmodule ElixirDrip.Storage do
   @moduledoc false
-  defmodule Media do
-    @moduledoc false
-    defstruct [
-      :storage_key
-    ]
-  end
 
   alias ElixirDrip.Storage.{Media, Provider}
 
