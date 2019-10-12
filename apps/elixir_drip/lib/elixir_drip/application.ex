@@ -5,9 +5,15 @@ defmodule ElixirDrip.Application do
 
   use Application
 
+  alias ElixirDrip.Storage.Supervisors.CacheSupervisor
+
   def start(_type, _args) do
+    import Supervisor.Spec, warn: false
+
     children = [
-      ElixirDrip.Repo
+      supervisor(ElixirDrip.Repo, []),
+      supervisor(CacheSupervisor, []),
+      worker(Registry, [[keys: :unique, name: ElixirDrip.Registry]])
     ]
 
     Supervisor.start_link(children, strategy: :one_for_one, name: ElixirDrip.Supervisor)

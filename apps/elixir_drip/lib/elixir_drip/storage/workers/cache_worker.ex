@@ -8,7 +8,8 @@ defmodule ElixirDrip.Storage.Workers.CacheWorker do
     GenServer.start_link(@name, content, name: name_for(media_id))
   end
 
-  def name_for(media_id), do: {:global, {:cache, media_id}}
+  def name_for(media_id),
+    do: {:via, Registry, {ElixirDrip.Registry, {:cache, media_id}}}
 
   @impl true
   def init(content) do
