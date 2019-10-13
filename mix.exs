@@ -10,6 +10,8 @@ defmodule ElixirDrip.Umbrella.MixProject do
   end
 
   defp deps do
-    []
+    [
+      {:credo, "~> 0.3", only: [:test, :dev], runtime: false}
+    ]
   end
 end

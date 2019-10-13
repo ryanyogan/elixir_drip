@@ -1,4 +1,9 @@
 defmodule ElixirDrip.Storage.Media do
+  @moduledoc """
+  Media creates an interface for modifying state for the Media entity.
+
+  You will use a context to interract with this data, not directly.
+  """
   defstruct id: :integer,
             filename: :string,
             full_path: :string,

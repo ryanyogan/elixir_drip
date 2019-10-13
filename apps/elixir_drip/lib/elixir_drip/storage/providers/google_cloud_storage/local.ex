@@ -1,4 +1,10 @@
 defmodule ElixirDrip.Storage.Providers.GoogleCloudStorageLocal do
+  @moduledoc """
+  Provides a local abstraction for interraction with our
+  Google Cloud provider.  For local development and testing these callback
+  functions defined [upload, download] simply log and return the
+  tuple defined in `Beahviours.StorageProvider`
+  """
   @behaviour ElixirDrip.Behaviours.StorageProvider
 
   require Logger
